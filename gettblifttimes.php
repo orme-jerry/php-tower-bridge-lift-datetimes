@@ -60,7 +60,7 @@
 	$escaped_values = implode("'), ('", array_map(function ($entry) {
 	  return implode("','", $entry);
 	}, $db));
-	$sql = "TRUNCATE TABLE `lifttimes`; ALTER TABLE `lifttimes` AUTO_INCREMENT = 1; INSERT INTO `lifttimes` (`$columns`) VALUES ('$escaped_values') ON DUPLICATE KEY UPDATE datetime=datetime, vessel=vessel, direction=direction";
+	$sql = "INSERT IGNORE INTO `lifttimes` (`$columns`) VALUES ('$escaped_values')";
 	//echo $sql;
 	$servername = "***";
 	$username = "***";
